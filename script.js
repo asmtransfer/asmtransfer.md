@@ -4,6 +4,41 @@ document.addEventListener('DOMContentLoaded', () => {
   const year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
 
+  const glowStyle = document.createElement('style');
+  glowStyle.textContent = `
+    .section:not(.reviews),
+    .process-section,
+    .photo-story-text,
+    .owner-copy,
+    .contact {
+      background-image: radial-gradient(circle at 100% 100%, rgba(243,196,0,.13) 0%, rgba(243,196,0,.055) 20%, rgba(243,196,0,.018) 38%, transparent 58%);
+      background-repeat: no-repeat;
+    }
+    .process-section {
+      background-image:
+        radial-gradient(circle at 100% 100%, rgba(243,196,0,.11) 0%, rgba(243,196,0,.045) 22%, transparent 56%),
+        linear-gradient(180deg,#0b0b0c 0%,#101012 100%);
+    }
+    .contact {
+      background-image: radial-gradient(circle at 100% 100%, rgba(243,196,0,.16) 0%, rgba(243,196,0,.065) 24%, rgba(243,196,0,.02) 42%, transparent 62%);
+    }
+    .photo-story-text,
+    .owner-copy {
+      background-color:#111113;
+    }
+    @media (max-width:560px) {
+      .section:not(.reviews),
+      .process-section,
+      .photo-story-text,
+      .owner-copy,
+      .contact {
+        background-size: 145% 145%;
+        background-position: 100% 100%;
+      }
+    }
+  `;
+  document.head.appendChild(glowStyle);
+
   const animated = [
     ...document.querySelectorAll('.process-step'),
     ...document.querySelectorAll('.route-item'),
