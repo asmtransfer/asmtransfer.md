@@ -1,0 +1,22 @@
+name: Update owner photo
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/update-owner-photo.yml'
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Replace owner photo
+        run: sed -i 's/IMG_20260711_205419.jpg/fc9a30b2-8644-4f4a-84e0-a47d92d7251d.png/g' index.html
+      - name: Commit change
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Replace owner photo" || exit 0
+          git push
