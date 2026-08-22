@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="reviews-summary">
           <span class="reviews-score">5,0</span>
           <span class="reviews-stars">★★★★★</span>
-          <span>11 отзывов</span>
+          <span>13 отзывов</span>
         </div>
       </div>
       <span class="google-mark"><span class="google-g">G</span> Google</span>
