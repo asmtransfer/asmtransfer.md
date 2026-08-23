@@ -2,3 +2,4 @@
 /* Lightweight hero asset override. */
 .hero{background-image:url('car.webp')}
 .route-hero{padding-top:140px;align-items:center}.route-hero h1{margin:0;font-size:clamp(42px,6vw,88px);line-height:.94;letter-spacing:-.04em}.route-hero h1 span{color:#f3c400}.route-price{display:inline-flex;margin-top:22px;padding:12px 16px;border:1px solid rgba(243,196,0,.35);border-radius:10px;background:rgba(243,196,0,.08);color:#f3c400;font-size:18px;font-weight:900}.route-note{color:#9d9da0;font-size:13px;margin-top:8px}@media(max-width:900px){.route-hero{padding-top:120px}.route-hero h1{font-size:44px}}
+footer a{color:#bdbdbf;text-decoration:none;transition:color .2s ease}footer a:hover,footer a:focus{color:#f3c400}
