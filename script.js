@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   `;
   document.head.appendChild(style);
 
-  const routes = [
+  const baseRoutes = [
     ['Тирасполь','Аэропорт Кишинёва','500 руб. ПМР'],
     ['Бендеры','Аэропорт Кишинёва','440 руб. ПМР'],
     ['Слободзея','Аэропорт Кишинёва','550 руб. ПМР'],
@@ -98,6 +98,12 @@ document.addEventListener('DOMContentLoaded', () => {
     ['Бендеры','Вадул-луй-Водэ','400 руб. ПМР'],
     ['Тирасполь','Вадул-луй-Водэ','500 руб. ПМР']
   ];
+  const routes = [...baseRoutes];
+  baseRoutes.forEach(([from, to, price]) => {
+    if (!routes.some(route => route[0] === to && route[1] === from)) {
+      routes.push([to, from, price]);
+    }
+  });
   const routesSection = document.getElementById('routes');
   if (routesSection) {
     const calc=document.createElement('section'); calc.className='section calculator-section'; calc.id='calculator'; calc.innerHTML=`<div class="calculator-wrap"><div class="calculator-copy"><div class="eyebrow">Предварительная стоимость</div><h2>РАССЧИТАЙТЕ<br>ПОЕЗДКУ</h2><p>Выберите пункт отправления и направление — калькулятор покажет ориентировочную стоимость поездки за автомобиль.</p><div class="early-booking"><strong>−10%</strong><span>При бронировании поездки за 7 дней и более</span></div></div><div class="calculator-box"><div class="calculator-field"><label>Откуда</label><select id="calc-from"><option value="">Выберите город</option></select></div><div class="calculator-field"><label>Куда</label><select id="calc-to" disabled><option value="">Сначала выберите город</option></select></div><div class="calculator-result"><div class="calculator-result-label">Предварительная стоимость</div><div class="calculator-price" id="calc-price">—</div><div class="calculator-car-note">Цена указана за автомобиль, не за одного пассажира.</div><div class="calculator-discount-note">Бронируете за 7 дней и более? Скидка 10% от указанной стоимости.</div><div class="calculator-placeholder" id="calc-placeholder">Выберите маршрут, чтобы увидеть стоимость.</div><div class="calculator-warning"><strong>Важно:</strong> стоимость может меняться в связи с изменением цен на топливо. Актуальную цену обязательно уточняйте перед бронированием.</div><div class="calculator-actions"><a class="btn" id="calc-whatsapp" href="https://wa.me/37377950129" target="_blank">Уточнить в WhatsApp</a><a class="btn btn-ghost calculator-phone" href="tel:+37377950129">📞</a></div></div></div></div>`; routesSection.insertAdjacentElement('afterend',calc);
