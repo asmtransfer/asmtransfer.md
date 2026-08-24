@@ -4,6 +4,22 @@ document.addEventListener('DOMContentLoaded', () => {
   const year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
 
+  const canonical = document.querySelector('link[rel="canonical"]')?.href;
+  const routeTitle = document.querySelector('h1')?.textContent.replace(/\s+/g,' ').trim();
+  if (canonical && canonical !== 'https://asmtransfer.md/' && routeTitle) {
+    const breadcrumbs = document.createElement('script');
+    breadcrumbs.type = 'application/ld+json';
+    breadcrumbs.textContent = JSON.stringify({
+      '@context':'https://schema.org',
+      '@type':'BreadcrumbList',
+      itemListElement:[
+        {'@type':'ListItem',position:1,name:'ASM Transfer',item:'https://asmtransfer.md/'},
+        {'@type':'ListItem',position:2,name:routeTitle,item:canonical}
+      ]
+    });
+    document.head.appendChild(breadcrumbs);
+  }
+
   const style = document.createElement('style');
   style.textContent = `
     .section:not(.reviews),.process-section,.photo-story-text,.owner-copy,.contact{background-image:radial-gradient(circle at 100% 100%,rgba(243,196,0,.13) 0%,rgba(243,196,0,.055) 20%,rgba(243,196,0,.018) 38%,transparent 58%);background-repeat:no-repeat}.process-section{background-image:radial-gradient(circle at 100% 100%,rgba(243,196,0,.11) 0%,rgba(243,196,0,.045) 22%,transparent 56%),linear-gradient(180deg,#0b0b0c 0%,#101012 100%)}.contact{background-image:radial-gradient(circle at 100% 100%,rgba(243,196,0,.16) 0%,rgba(243,196,0,.065) 24%,rgba(243,196,0,.02) 42%,transparent 62%)}.photo-story-text,.owner-copy{background-color:#111113}
