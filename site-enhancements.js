@@ -12,20 +12,22 @@
       if(toLabel) toLabel.setAttribute('for','calc-to');
     }
 
-    // Live local information on the homepage.
-    var hero=document.querySelector('.hero-content');
-    if(!hero || document.getElementById('live-info')) return;
+    // Live date, time and weather: always visible in the fixed header.
+    var topbar=document.querySelector('.topbar');
+    if(!topbar || document.getElementById('live-info')) return;
 
     var box=document.createElement('div');
     box.id='live-info';
     box.className='live-info';
     box.setAttribute('aria-live','polite');
-    box.innerHTML='<div class="live-info-item"><span class="live-info-label">Сейчас</span><strong id="live-time">--:--</strong></div><div class="live-info-item"><span class="live-info-label">Дата</span><strong id="live-date">—</strong></div><div class="live-info-item"><span class="live-info-label">Бендеры</span><strong id="live-temp">—°C</strong></div>';
-    var trust=hero.querySelector('.trust-row');
-    if(trust) trust.insertAdjacentElement('afterend',box); else hero.appendChild(box);
+    box.setAttribute('title','Текущее время, дата и температура в Бендерах');
+    box.innerHTML='<span class="live-dot" aria-hidden="true"></span><div class="live-cell live-clock"><span class="live-icon" aria-hidden="true">◷</span><strong id="live-time">--:--</strong></div><span class="live-divider" aria-hidden="true"></span><div class="live-cell live-date-cell"><span class="live-icon" aria-hidden="true">◆</span><strong id="live-date">—</strong></div><span class="live-divider" aria-hidden="true"></span><div class="live-cell live-weather"><span class="live-weather-icon" aria-hidden="true">☀</span><strong id="live-temp">—°C</strong><span class="live-city">Бендеры</span></div>';
+
+    var nav=topbar.querySelector('nav');
+    if(nav) topbar.insertBefore(box,nav); else topbar.appendChild(box);
 
     var style=document.createElement('style');
-    style.textContent='.live-info{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;max-width:760px}.live-info-item{display:flex;align-items:baseline;gap:9px;min-height:40px;padding:9px 13px;border:1px solid rgba(243,196,0,.32);border-radius:10px;background:rgba(11,11,12,.72);backdrop-filter:blur(8px);box-shadow:0 8px 22px rgba(0,0,0,.18)}.live-info-label{color:#9d9da0;font-size:11px;font-weight:900;letter-spacing:.11em;text-transform:uppercase}.live-info strong{color:#f6f6f6;font-size:15px;font-weight:900}.live-info #live-temp{color:#f3c400}@media(max-width:560px){.live-info{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:18px}.live-info-item{display:block;padding:9px 8px;text-align:center;min-width:0}.live-info-label{display:block;margin-bottom:2px;font-size:9px}.live-info strong{font-size:13px;white-space:nowrap}}';
+    style.textContent='.live-info{height:44px;display:flex;align-items:center;gap:11px;margin-left:8px;padding:0 14px;border:1px solid rgba(243,196,0,.28);border-radius:999px;background:linear-gradient(180deg,rgba(24,24,26,.9),rgba(12,12,13,.9));backdrop-filter:blur(14px);box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 8px 28px rgba(0,0,0,.26);white-space:nowrap}.live-dot{width:7px;height:7px;border-radius:50%;background:#f3c400;box-shadow:0 0 0 4px rgba(243,196,0,.08),0 0 15px rgba(243,196,0,.42);animation:livePulse 2.4s ease-in-out infinite}.live-cell{display:flex;align-items:center;gap:6px;min-width:0}.live-info strong{font-size:13px;line-height:1;font-weight:900;letter-spacing:.02em;color:#f6f6f6}.live-icon{font-size:11px;color:#8f8f92}.live-weather-icon{font-size:14px;color:#f3c400;filter:drop-shadow(0 0 6px rgba(243,196,0,.2))}.live-weather #live-temp{color:#f3c400;font-size:14px}.live-city{font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#77777b}.live-divider{width:1px;height:18px;background:linear-gradient(transparent,rgba(255,255,255,.15),transparent)}@keyframes livePulse{0%,100%{opacity:.72;transform:scale(.9)}50%{opacity:1;transform:scale(1.08)}}@media(max-width:1120px){.live-info{gap:8px;padding:0 11px}.live-city{display:none}.live-info strong{font-size:12px}}@media(max-width:900px){.topbar{gap:8px}.live-info{order:2;height:38px;margin-left:auto;margin-right:0;padding:0 10px;gap:7px}.topbar .btn-small{order:3;margin-left:0}.live-dot,.live-divider,.live-icon,.live-weather-icon,.live-city{display:none}.live-cell{gap:0}.live-info strong{font-size:11px}.live-weather #live-temp{font-size:12px}.live-date-cell strong{color:#a9a9ac}}@media(max-width:560px){.topbar{padding-left:12px!important;padding-right:12px!important}.brand-mark{margin-right:8px!important}.brand-mark::after{margin-left:8px!important}.brand-text{display:none}.live-info{height:36px;padding:0 9px;gap:6px;border-color:rgba(243,196,0,.23);box-shadow:none}.live-date-cell{display:none}.live-info strong{font-size:11px}.live-weather #live-temp{font-size:12px}.topbar .btn-small{min-width:36px!important;padding:0 9px!important}}';
     document.head.appendChild(style);
 
     var timeEl=document.getElementById('live-time');
