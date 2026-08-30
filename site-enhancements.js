@@ -40,6 +40,45 @@
       });
     }
 
+    // SEO: resolve the shared business @id directly on route pages.
+    var canonical=document.querySelector('link[rel="canonical"]');
+    var canonicalUrl=canonical && canonical.href;
+    if(canonicalUrl && canonicalUrl!=='https://asmtransfer.md/' && !document.getElementById('asm-route-business-schema')){
+      var businessSchema=document.createElement('script');
+      businessSchema.id='asm-route-business-schema';
+      businessSchema.type='application/ld+json';
+      businessSchema.textContent=JSON.stringify({
+        '@context':'https://schema.org',
+        '@type':'TaxiService',
+        '@id':'https://asmtransfer.md/#business',
+        name:'ASM Transfer',
+        url:'https://asmtransfer.md/',
+        telephone:['+37377950129','+37369933305'],
+        priceRange:'$$',
+        areaServed:['Бендеры','Тирасполь','Кишинёв','Молдова','Приднестровье'],
+        availableLanguage:['ru','ro']
+      });
+      document.head.appendChild(businessSchema);
+    }
+
+    // SEO: add a compact, crawlable related-routes block on route pages.
+    if(canonicalUrl && canonicalUrl!=='https://asmtransfer.md/' && !document.querySelector('.asm-related-routes')){
+      var footer=document.querySelector('footer');
+      if(footer){
+        var routes=[
+          ['/taxi-bendery-kishinev/','Такси Бендеры — Кишинёв'],
+          ['/taxi-bendery-aeroport-kishinev/','Бендеры — аэропорт Кишинёва'],
+          ['/taxi-tiraspol-kishinev/','Такси Тирасполь — Кишинёв'],
+          ['/transfer-tiraspol-aeroport-kishinev/','Тирасполь — аэропорт Кишинёва']
+        ].filter(function(route){return location.pathname!==route[0];});
+        var related=document.createElement('nav');
+        related.className='asm-related-routes';
+        related.setAttribute('aria-label','Популярные направления');
+        related.innerHTML='<div class="asm-related-inner"><strong>Популярные направления</strong><div>'+routes.map(function(route){return '<a href="'+route[0]+'">'+route[1]+'</a>';}).join('')+'</div></div>';
+        footer.parentNode.insertBefore(related,footer);
+      }
+    }
+
     // Accessibility: expose FAQ state to screen readers.
     document.querySelectorAll('.faq-question').forEach(function(button,index){
       var item=button.closest('.faq-item');
@@ -67,7 +106,7 @@
 
     var style=document.createElement('style');
     style.textContent='\
-      .topbar .btn-small::before{content:none!important}.topbar-phone-svg{width:19px;height:19px;display:block;flex:0 0 19px}.topbar-call-text{font-size:13px}.car-section{padding-bottom:72px}.car-section+.section{padding-top:72px}.footer-routes{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 24px!important;align-items:start!important;max-width:760px}.footer-routes::before{content:"Популярные маршруты";grid-column:1/-1;color:#f3c400;font-size:11px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;margin-bottom:4px}.footer-routes a{color:#c5c5c7!important;text-decoration:none;line-height:1.45}.footer-routes a:hover,.footer-routes a:focus{color:#f3c400!important}.sticky-chat{background:#111113!important;color:#f3c400!important;border:1px solid rgba(243,196,0,.62)!important}@media(max-width:900px){.topbar-call-text{display:none}.topbar .btn-small{font-size:inherit!important}.topbar-phone-svg{width:18px;height:18px}.car-section{padding-bottom:54px}.car-section+.section{padding-top:54px}.footer-routes{grid-template-columns:1fr 1fr;max-width:none;width:100%}}@media(max-width:560px){.footer-routes{grid-template-columns:1fr;gap:7px!important}.footer-routes::before{margin-bottom:2px}}';
+      .topbar .btn-small::before{content:none!important}.topbar-phone-svg{width:19px;height:19px;display:block;flex:0 0 19px}.topbar-call-text{font-size:13px}.car-section{padding-bottom:72px}.car-section+.section{padding-top:72px}.footer-routes{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 24px!important;align-items:start!important;max-width:760px}.footer-routes::before{content:"Популярные маршруты";grid-column:1/-1;color:#f3c400;font-size:11px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;margin-bottom:4px}.footer-routes a{color:#c5c5c7!important;text-decoration:none;line-height:1.45}.footer-routes a:hover,.footer-routes a:focus{color:#f3c400!important}.sticky-chat{background:#111113!important;color:#f3c400!important;border:1px solid rgba(243,196,0,.62)!important}.asm-related-routes{padding:34px 6vw;border-top:1px solid rgba(255,255,255,.08);background:#0b0b0c}.asm-related-inner{max-width:1120px;margin:0 auto}.asm-related-inner>strong{display:block;margin-bottom:14px;color:#f3c400;font-size:12px;font-weight:900;letter-spacing:.12em;text-transform:uppercase}.asm-related-inner>div{display:flex;flex-wrap:wrap;gap:10px 22px}.asm-related-inner a{color:#d2d2d4;text-decoration:none;font-size:14px;font-weight:750}.asm-related-inner a:hover,.asm-related-inner a:focus{color:#f3c400}@media(max-width:900px){.topbar-call-text{display:none}.topbar .btn-small{font-size:inherit!important}.topbar-phone-svg{width:18px;height:18px}.car-section{padding-bottom:54px}.car-section+.section{padding-top:54px}.footer-routes{grid-template-columns:1fr 1fr;max-width:none;width:100%}}@media(max-width:560px){.footer-routes{grid-template-columns:1fr;gap:7px!important}.footer-routes::before{margin-bottom:2px}.asm-related-routes{padding:28px 20px}.asm-related-inner>div{display:grid;gap:10px}.asm-related-inner a{min-height:44px;display:flex;align-items:center}}';
     document.head.appendChild(style);
   }
 
