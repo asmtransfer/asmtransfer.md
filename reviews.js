@@ -4,34 +4,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const reviewStyle = document.createElement('style');
   reviewStyle.textContent = `
-    .reviews.review-showcase{display:block;padding-top:100px;padding-bottom:100px;background:radial-gradient(circle at 100% 100%,rgba(243,196,0,.16) 0,rgba(243,196,0,.055) 25%,transparent 54%),#101012;overflow:hidden}
-    .reviews-head{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-bottom:34px}
-    .reviews-title h2{margin:0;font-size:clamp(42px,5vw,78px);line-height:.92;letter-spacing:-.045em}
+    .reviews.review-showcase{display:block;padding-top:92px;padding-bottom:92px;background:radial-gradient(circle at 100% 100%,rgba(243,196,0,.16) 0,rgba(243,196,0,.055) 25%,transparent 54%),#101012;overflow:hidden}
+    .reviews-head{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-bottom:30px}
+    .reviews-title h2{margin:0;font-size:clamp(42px,5vw,72px);line-height:.92;letter-spacing:-.045em}
     .reviews-title h2 span{color:#f3c400}
-    .reviews-summary{display:flex;align-items:center;gap:12px;margin-top:18px;color:#c8c8ca}
+    .reviews-summary{display:flex;align-items:center;gap:12px;margin-top:16px;color:#c8c8ca}
     .reviews-score{font-size:22px;font-weight:900;color:#fff}
     .reviews-stars,.review-stars{color:#f3c400;letter-spacing:.05em}
     .google-mark{display:inline-flex;align-items:center;gap:7px;color:#a8a8aa;font-size:13px;font-weight:800}
     .google-g{font-weight:950;font-size:18px;background:conic-gradient(from -45deg,#4285f4 0 25%,#34a853 0 45%,#fbbc05 0 70%,#ea4335 0 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
-    .reviews-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-    .review-card{position:relative;min-height:250px;padding:26px;border:1px solid rgba(255,255,255,.09);border-radius:16px;background:linear-gradient(145deg,rgba(24,24,26,.96),rgba(15,15,17,.96));box-shadow:0 18px 50px rgba(0,0,0,.2);display:flex;flex-direction:column}
-    .review-card::after{content:"“";position:absolute;right:20px;top:8px;color:rgba(243,196,0,.10);font-size:86px;font-family:Georgia,serif;line-height:1}
+    .reviews-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .review-card{position:relative;min-height:275px;padding:24px;border:1px solid rgba(255,255,255,.09);border-radius:16px;background:linear-gradient(145deg,rgba(24,24,26,.96),rgba(15,15,17,.96));box-shadow:0 18px 50px rgba(0,0,0,.2);display:flex;flex-direction:column}
+    .review-card::after{content:"“";position:absolute;right:18px;top:6px;color:rgba(243,196,0,.10);font-size:80px;font-family:Georgia,serif;line-height:1}
     .review-top{display:flex;align-items:center;justify-content:space-between;gap:12px;position:relative;z-index:1}
-    .review-name{font-size:18px;font-weight:900;color:#fff}
-    .review-stars{font-size:15px;margin-top:5px}
-    .review-card p{position:relative;z-index:1;margin:20px 0 22px;color:#c3c3c6;font-size:16px;line-height:1.55;flex:1}
-    .review-source{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:16px;border-top:1px solid rgba(255,255,255,.08);color:#8f8f92;font-size:12px}
-    .reviews-footer{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-top:26px}
-    .reviews-note{color:#8f8f92;font-size:13px}
+    .review-name{font-size:17px;font-weight:900;color:#fff}
+    .review-stars{font-size:14px;margin-top:5px}
+    .review-card p{position:relative;z-index:1;margin:18px 0 20px;color:#c3c3c6;font-size:15px;line-height:1.55;flex:1}
+    .review-source{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:15px;border-top:1px solid rgba(255,255,255,.08);color:#8f8f92;font-size:12px}
+    .reviews-footer{display:flex;align-items:center;justify-content:flex-end;gap:20px;margin-top:24px}
     .review-link{white-space:nowrap}
+    @media(max-width:900px){.reviews-grid{grid-template-columns:1fr 1fr}.review-card:last-child{grid-column:1/-1;min-height:auto}}
     @media(max-width:760px){
-      .reviews.review-showcase{padding-top:72px;padding-bottom:80px}
-      .reviews-head{align-items:flex-start;flex-direction:column;margin-bottom:26px}
+      .reviews.review-showcase{padding-top:70px;padding-bottom:76px}
+      .reviews-head{align-items:flex-start;flex-direction:column;margin-bottom:24px}
       .reviews-grid{display:flex;overflow-x:auto;gap:12px;margin-left:-22px;margin-right:-22px;padding:0 22px 12px;scroll-snap-type:x mandatory;scrollbar-width:none}
       .reviews-grid::-webkit-scrollbar{display:none}
-      .review-card{flex:0 0 86%;min-height:290px;scroll-snap-align:start;padding:22px}
+      .review-card,.review-card:last-child{flex:0 0 86%;min-height:280px;scroll-snap-align:start;padding:22px}
       .review-card p{font-size:15px}
-      .reviews-footer{align-items:flex-start;flex-direction:column}
+      .reviews-footer{justify-content:stretch}
       .review-link{width:100%}
     }
   `;
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const reviews = [
     {
       name: 'Анастасия Гросу',
-      text: 'Пользуемся услугами Михаила уже более двух лет и всегда очень довольны. Внимательный, пунктуальный и вежливый водитель, в салоне всегда чисто. Ездим по направлению Бендеры — Кишинёв, аэропорт и вокзал. Однозначно рекомендуем!',
+      text: 'Пользуемся услугами Михаила уже более двух лет и всегда очень довольны. Внимательный, пунктуальный и вежливый водитель, в салоне всегда чисто. Однозначно рекомендуем!',
       date: 'август 2026'
     },
     {
@@ -49,24 +49,9 @@ document.addEventListener('DOMContentLoaded', () => {
       date: 'август 2026'
     },
     {
-      name: 'Evgenia Pilipetska',
-      text: 'Наш постоянный водитель — всегда на высоте! Пунктуальный, вежливый, с ним спокойно и комфортно в дороге. Отвёз и забрал из аэропорта точно по времени. Всегда приятно ездить. Спасибо за надёжность!',
-      date: 'октябрь 2025'
-    },
-    {
       name: 'Надежда Кара',
-      text: 'Отличная поездка, водитель очень внимательный и старательный. Встреча в аэропорту и быстрая дорога домой, а самое главное — комфорт. В машине есть водичка для всех и Wi‑Fi, что очень важно. Рекомендую услуги этой компании.',
+      text: 'Отличная поездка, водитель очень внимательный. Встреча в аэропорту и комфортная дорога домой. В машине есть вода и Wi‑Fi. Рекомендую услуги этой компании.',
       date: 'август 2026'
-    },
-    {
-      name: 'Olga Maltseva',
-      text: 'У нас было две поездки Бендеры–Кишинёв и обратно. Михаилу огромное спасибо за супер комфорт, пунктуальность и спокойное вождение. Нам всё очень понравилось. Обязательно обратимся вновь!',
-      date: 'апрель 2026'
-    },
-    {
-      name: 'Elena D',
-      text: 'Работаем с Мишей уже больше 10 лет! Ни разу не подвёл, всегда всё чётко, качественно, быстро и безопасно. Очень удобно, что в машине есть ещё и Wi‑Fi.',
-      date: 'апрель 2026'
     }
   ];
 
@@ -79,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="reviews-summary">
           <span class="reviews-score">5,0</span>
           <span class="reviews-stars">★★★★★</span>
-          <span>Отзывы клиентов</span>
+          <span>Google</span>
         </div>
       </div>
       <span class="google-mark"><span class="google-g">G</span> Google</span>
@@ -97,7 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
       `).join('')}
     </div>
     <div class="reviews-footer">
-      <div class="reviews-note">На телефоне отзывы можно листать пальцем →</div>
       <a class="btn btn-ghost review-link" href="https://tinyurl.com/yc4ypwxu" target="_blank" rel="noopener">Все отзывы в Google →</a>
     </div>
   `;
