@@ -7,7 +7,7 @@
   }
 
   var core=document.createElement('script');
-  core.src='/script-original.js?v=20260830-2';
+  core.src='/script-original.js?v=20260903-1';
   core.onload=function(){
     if(document.readyState!=='loading'){
       document.dispatchEvent(new Event('DOMContentLoaded'));
