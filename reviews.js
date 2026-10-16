@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
       `).join('')}
     </div>
     <div class="reviews-footer">
-      <a class="btn btn-ghost review-link" href="https://tinyurl.com/yc4ypwxu" target="_blank" rel="noopener">Все отзывы в Google →</a>
+      <a class="btn btn-ghost review-link" href="https://www.google.com/maps/place/ASM+Transfer/@46.9296811,28.8841443,10z/data=!3m1!4b1!4m6!3m5!1s0x2afa34125515c441:0x9da23c654b791c34!8m2!3d46.930156!4d29.2144597!16s%2Fg%2F11ygsjrtqx" target="_blank" rel="noopener">Все отзывы в Google →</a>
     </div>
   `;
 });
