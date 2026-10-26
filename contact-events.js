@@ -21,8 +21,8 @@
     var page = canonical ? new URL(canonical.href).pathname : location.pathname;
     var data = {contact_method: method, page_path: page, placement: zone};
     document.dispatchEvent(new CustomEvent('asm:contact', {detail: data}));
-    if (typeof window.gtag === 'function') {
-      window.gtag('event', 'contact_click', data);
+    if (typeof window.asmAnalyticsTrack === 'function') {
+      window.asmAnalyticsTrack(data);
     }
   }, {capture: true});
 }());
