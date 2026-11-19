@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://asmtransfer.md/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -14,7 +14,7 @@
   </url>
   <url>
     <loc>https://asmtransfer.md/transfer-tiraspol-aeroport-kishinev/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -26,7 +26,7 @@
   </url>
   <url>
     <loc>https://asmtransfer.md/taxi-bendery-aeroport-kishinev/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -79,5 +79,21 @@
   <url>
     <loc>https://asmtransfer.md/taxi-slobodzeya-kishinev/</loc>
     <lastmod>2026-10-26</lastmod>
+  </url>
+  <url>
+    <loc>https://asmtransfer.md/taxi-parkany-aeroport-kishinev/</loc>
+    <lastmod>2026-11-19</lastmod>
+  </url>
+  <url>
+    <loc>https://asmtransfer.md/taxi-karagash-aeroport-kishinev/</loc>
+    <lastmod>2026-11-19</lastmod>
+  </url>
+  <url>
+    <loc>https://asmtransfer.md/taxi-slobodzeya-aeroport-kishinev/</loc>
+    <lastmod>2026-11-19</lastmod>
+  </url>
+  <url>
+    <loc>https://asmtransfer.md/vstrecha-v-aeroportu-kishineva/</loc>
+    <lastmod>2026-11-19</lastmod>
   </url>
 </urlset>
