@@ -2,7 +2,12 @@
   'use strict';
 
   const language = document.documentElement.lang || 'ru';
-  const dictionary = window.asmDictionary || {};
+  const dictionary = Object.assign({}, window.asmDictionary, {
+    'Настройки статистики': {
+      ru: 'Настройки статистики', ro: 'Setări statistice', en: 'Analytics settings',
+      it: 'Impostazioni statistiche', tr: 'İstatistik ayarları'
+    }[language]
+  });
   const hasRussian = /[А-Яа-яЁё]/;
   const rate = 16;
   const currencyNames = {
