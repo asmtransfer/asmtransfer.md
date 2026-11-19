@@ -6,6 +6,10 @@
     'Настройки статистики': {
       ru: 'Настройки статистики', ro: 'Setări statistice', en: 'Analytics settings',
       it: 'Impostazioni statistiche', tr: 'İstatistik ayarları'
+    }[language],
+    'Позвонить ASM Transfer': {
+      ru: 'Позвонить ASM Transfer', ro: 'Sună la ASM Transfer', en: 'Call ASM Transfer',
+      it: 'Chiama ASM Transfer', tr: "ASM Transfer'i ara"
     }[language]
   });
   const hasRussian = /[А-Яа-яЁё]/;
