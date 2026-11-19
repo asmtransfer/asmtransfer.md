@@ -7,12 +7,7 @@
   }
 
   var core=document.createElement('script');
-  core.src='/script-original.js?v=20261119-languages';
-  core.onload=function(){
-    if(document.readyState!=='loading'){
-      document.dispatchEvent(new Event('DOMContentLoaded'));
-    }
-    loadEnhancements();
-  };
+  core.src='/script-original.js?v=20261119-languages-2';
+  core.onload=loadEnhancements;
   document.head.appendChild(core);
 })();

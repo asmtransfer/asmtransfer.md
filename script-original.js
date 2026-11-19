@@ -1,6 +1,6 @@
 document.documentElement.classList.add('js');
 
-document.addEventListener('DOMContentLoaded', () => {
+function initializeTransferSite() {
   const year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
 
@@ -163,4 +163,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const sticky=document.createElement('div');sticky.className='sticky-actions';sticky.innerHTML=`<a class="sticky-calc" href="${routesSection ? "#calculator" : "/#calculator"}">Рассчитать</a><a class="sticky-chat" href="${whatsappBookingHref}" target="_blank">Написать</a>`;document.body.appendChild(sticky);
 
   const animated=[...document.querySelectorAll('.process-step,.route-item,.calculator-section,.promo-section,.booking-section,.faq-section,.feature,.photo-story,.owner-story,.reviews,.contact-inner')]; animated.forEach((el,index)=>{el.classList.add('reveal');if(el.classList.contains('process-step'))el.classList.add(`reveal-delay-${Math.min(index%4,3)}`)}); const processLine=document.querySelector('.process-line'); if(!('IntersectionObserver'in window)){animated.forEach(el=>el.classList.add('is-visible'));if(processLine)processLine.classList.add('is-visible');return} const observer=new IntersectionObserver((entries,obs)=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');obs.unobserve(entry.target)}}),{threshold:.16,rootMargin:'0px 0px -6% 0px'});animated.forEach(el=>observer.observe(el));if(processLine)observer.observe(processLine);
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeTransferSite, {once: true});
+} else {
+  initializeTransferSite();
+}
