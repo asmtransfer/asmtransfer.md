@@ -35,7 +35,7 @@
 
     var canonical=document.querySelector('link[rel="canonical"]');
     var canonicalUrl=canonical && canonical.href;
-    var isRoute=canonicalUrl && canonicalUrl!=='https://asmtransfer.md/';
+    var isRoute=canonicalUrl && new URL(canonicalUrl).pathname.replace(/^\/(ro|en|it|tr)(?=\/)/, '')!=='/';
     if(isRoute && !document.getElementById('asm-route-business-schema')){
       var businessSchema=document.createElement('script');
       businessSchema.id='asm-route-business-schema';
