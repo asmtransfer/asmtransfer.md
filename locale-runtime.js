@@ -12,6 +12,23 @@
       it: 'Chiama ASM Transfer', tr: "ASM Transfer'i ara"
     }[language]
   });
+  // Place names are proper nouns and must never be translated as common words.
+  const placeNames = {
+    'Резина': 'Rezina', 'Сороки': 'Soroca', 'Страшены': 'Strășeni',
+    'Новые Анены': 'Anenii Noi', 'Старый Орхей': 'Orheiul Vechi',
+    'Кэлэраши': 'Călărași', 'Парканы': 'Parcani', 'Карагаш': 'Caragaș',
+    'Слободзея': 'Slobozia', 'Бендеры': 'Bender', 'Тирасполь': 'Tiraspol',
+    'Кишинёв': 'Chișinău', 'Яссы': 'Iași'
+  };
+  if (language !== 'ru') Object.assign(dictionary, placeNames);
+  const fieldLabels = {
+    ro: ['Oraș de plecare', 'Oraș de destinație', 'Inversează orașele'],
+    en: ['Departure city', 'Destination city', 'Swap cities'],
+    it: ['Città di partenza', 'Città di destinazione', 'Inverti le città'],
+    tr: ['Kalkış şehri', 'Varış şehri', 'Şehirleri değiştir']
+  }[language];
+  if (fieldLabels) ['Город отправления', 'Город назначения', 'Поменять города местами']
+    .forEach((source, index) => { dictionary[source] = fieldLabels[index]; });
   const hasRussian = /[А-Яа-яЁё]/;
   const rate = 16;
   const currencyNames = {
