@@ -7,7 +7,7 @@
   }
 
   var core=document.createElement('script');
-  core.src='/script-original.js?v=20261119-languages-2';
+  core.src='/script-original.js?v=20261127-early-booking';
   core.onload=loadEnhancements;
   document.head.appendChild(core);
 })();
