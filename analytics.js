@@ -79,15 +79,29 @@
     var style = document.createElement('link');
     style.rel = 'stylesheet'; style.href = '/analytics.css?v=20261026';
     document.head.appendChild(style);
+    // Keep this small standalone prompt usable on pages without a locale dictionary.
+    var locales = {
+      ru: ["Статистика сайта", "Разрешите Google Analytics учитывать посещения и нажатия на контакты? Это помогает улучшать сайт. Выбор не влияет на бронирование поездки.", "Подробнее", "Разрешить статистику", "Без статистики", "Настройки статистики"],
+      en: ["Site statistics", "Allow Google Analytics to count visits and clicks on contact links? This helps us improve the site. Your choice won’t affect your booking.", "Learn more", "Allow statistics", "No statistics", "Analytics settings"],
+      ro: ["Statisticile site-ului", "Permiteți Google Analytics să înregistreze vizitele și clicurile pe linkurile de contact? Acest lucru ne ajută să îmbunătățim site-ul. Alegerea nu vă afectează rezervarea.", "Aflați mai multe", "Permite statistici", "Fără statistici", "Setări statistici"],
+      it: ["Statistiche del sito", "Vuoi consentire a Google Analytics di contare le visite e i clic sui link di contatto? Ci aiuta a migliorare il sito. La tua scelta non influisce sulla prenotazione.", "Scopri di più", "Consenti statistiche", "Nessuna statistica", "Impostazioni statistiche"],
+      tr: ["Site istatistikleri", "Google Analytics’in ziyaretleri ve iletişim bağlantılarına yapılan tıklamaları saymasına izin verir misiniz? Bu, siteyi iyileştirmemize yardımcı olur. Seçiminiz rezervasyonunuzu etkilemez.", "Daha fazla bilgi", "İstatistiklere izin ver", "İstatistik yok", "İstatistik ayarları"]
+    };
+    var lang = (document.documentElement.lang || 'ru').toLowerCase().split('-')[0];
+    if (!Object.prototype.hasOwnProperty.call(locales, lang)) lang = 'ru';
+    var copy = locales[lang];
+    var privacy = (lang === 'ru' ? '' : '/' + lang) + '/privacy/';
     panel = document.createElement('section');
     panel.className = 'asm-consent';
-    panel.setAttribute('aria-label', 'Статистика сайта');
-    panel.innerHTML = '<div><strong>Статистика сайта</strong><p>Разрешите Google Analytics учитывать посещения и нажатия на контакты? Это помогает улучшать сайт. Выбор не влияет на бронирование поездки. <a href="/privacy/">Подробнее</a></p></div><div class="asm-consent-actions"><button type="button" data-choice="accepted">Разрешить статистику</button><button type="button" data-choice="declined">Без статистики</button></div>';
+    panel.setAttribute('aria-label', copy[0]);
+    panel.innerHTML = '<div><strong>' + copy[0] + '</strong><p>' + copy[1] + ' <a href="' +
+      privacy + '">' + copy[2] + '</a></p></div><div class="asm-consent-actions"><button type="button" data-choice="accepted">' +
+      copy[3] + '</button><button type="button" data-choice="declined">' + copy[4] + '</button></div>';
     panel.querySelectorAll('button').forEach(function (button) {
       button.addEventListener('click', function () { choose(button.dataset.choice); });
     });
     settings = document.createElement('button');
-    settings.type = 'button'; settings.className = 'asm-consent-settings'; settings.textContent = 'Настройки статистики';
+    settings.type = 'button'; settings.className = 'asm-consent-settings'; settings.textContent = copy[5];
     settings.addEventListener('click', function () {
       panel.hidden = false; settings.hidden = true; panel.querySelector('button').focus();
     });
